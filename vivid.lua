@@ -209,7 +209,7 @@ function vivid.HSVtoRGB(...)
     g = v
     b = v
   else
-    local varh,var1,var2,var3
+    local varh,vari,var1,var2,var3
     varh = h*6
     if varh == 6 then varh = 0 end
     vari = math.floor(varh)
