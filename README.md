@@ -4,6 +4,8 @@ One file simple color manipulation library. Used for color conversion and math.
 
 All functions can take an `alpha` after the three components of a color. This variable is not modified, but passed through for convenience.
 
+Included in this repository is a simple example using Quickie that demonstrates the uses of this library. It can also serve as a tool if you need a good color picking utility for when you use lua.
+
 All conversion formulas are taken from [EasyRGB] with the exception of [HuSL]
 
 ##Available Colorspaces
