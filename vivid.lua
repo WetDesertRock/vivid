@@ -64,9 +64,9 @@ function vivid.RGBtoHSL(...)
       s = delta_max / (2-max-min)
     end
 
-    delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
-    delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
-    delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
+    local delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
+    local delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
+    local delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
 
     if r == max then
       h = delta_b - delta_g
@@ -90,7 +90,7 @@ function vivid.RGBtoHSV(...)
   local max = math_max(r,g,b)
   local delta_max = max-min
 
-  local h,s,l
+  local h,s,v
 
   v = max
 
@@ -99,9 +99,9 @@ function vivid.RGBtoHSV(...)
   else
     s = delta_max / max
 
-    delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
-    delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
-    delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
+    local delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
+    local delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
+    local delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
 
     if r == max then
       h = delta_b - delta_g
@@ -209,7 +209,7 @@ function vivid.HSVtoRGB(...)
     g = v
     b = v
   else
-    local varh,var1,var2,var3
+    local varh,vari,var1,var2,var3
     varh = h*6
     if varh == 6 then varh = 0 end
     vari = math.floor(varh)
