@@ -1,12 +1,6 @@
 local gui = require("Quickie")
 local vivid = require("vivid")
 
-
---TODO:
--- Add in lighten and modifier buttons
--- Paste button?
--- Hex copy?
-
 local CS = {
   "RGB",
   "HSL",
@@ -16,12 +10,11 @@ local CS = {
   "LCH",
   "Luv",
 }
--- local size = {200,20}
 local sliderInfos =  {
   RGB = {
-    {value=10,min=0,max=255},
-    {value=20,min=0,max=255},
-    {value=10,min=0,max=255},
+    {value=65,min=0,max=255},
+    {value=128,min=0,max=255},
+    {value=44,min=0,max=255},
   },
   HSL = {
     {value=0,min=0,max=1},
@@ -68,13 +61,13 @@ function love.load()
   gui.group.default.size[2] = 25
   gui.group.default.spacing = 5
   love.filesystem.setSymlinksEnabled( true )
-  updateColor(1)
+  updateColor("RGB")
 end
 
-function updateColor(i)
-  local color = getColor(CS[i])
-  if i ~= 1 then -- RGB
-    local fun = vivid[CS[i].."toRGB"]
+function updateColor(space)
+  local color = getColor(space)
+  if space ~= "RGB" then -- RGB
+    local fun = vivid[space.."toRGB"]
     color = {fun(color)}
   end
   for k,infos in pairs(sliderInfos) do
@@ -133,7 +126,7 @@ function love.update(dt)
         local vstr = string.format("%.2f",sliderInfos[colorspace][j].value)
         gui.Label{text = vstr, size = {50,"tight"}}
         if gui.Slider{info = sliderInfos[colorspace][j],size={180,10}} then
-          updateColor(i)
+          updateColor(colorspace)
         end
       end}
     end
@@ -144,33 +137,32 @@ function love.update(dt)
   gui.group.push{grow = "down"}
     if gui.Button{text = "Lighten"} then
       setColor("RGB",{vivid.lighten(0.05,getColor())})
-      updateColor(1)
+      updateColor("RGB")
     end
     if gui.Button{text = "Darken"} then
       setColor("RGB",{vivid.darken(0.05,getColor())})
-      updateColor(1)
+      updateColor("RGB")
     end
   gui.group.pop{}
   gui.group.push{grow = "down"}
     if gui.Button{text = "Saturate"} then
       setColor("RGB",{vivid.saturate(0.05,getColor())})
-      updateColor(1)
+      updateColor("RGB")
     end
     if gui.Button{text = "Desaturate"} then
       setColor("RGB",{vivid.desaturate(0.05,getColor())})
-      updateColor(1)
+      updateColor("RGB")
     end
   gui.group.pop{}
   gui.group.push{grow = "down"}
     if gui.Button{text = "Invert"} then
       setColor("RGB",{vivid.invert(getColor())})
-      updateColor(1)
+      updateColor("RGB")
     end
-    --Unused
-    -- if gui.Button{text = "Desaturate"} then
-    --   setColor("RGB",{vivid.desaturate(0.05,getColor())})
-    --   updateColor(1)
-    -- end
+    if gui.Button{text = "Invert Hue"} then
+      setColor("RGB",{vivid.invertHue(getColor())})
+      updateColor("RGB")
+    end
   gui.group.pop{}
   gui.group.pop{}
   gui.group.pop{}
