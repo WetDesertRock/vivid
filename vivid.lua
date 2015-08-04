@@ -64,9 +64,9 @@ function vivid.RGBtoHSL(...)
       s = delta_max / (2-max-min)
     end
 
-    delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
-    delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
-    delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
+    local delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
+    local delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
+    local delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
 
     if r == max then
       h = delta_b - delta_g
