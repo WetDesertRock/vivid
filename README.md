@@ -10,7 +10,7 @@ All conversion formulas are taken from [EasyRGB] with the exception of [HuSL] (w
 
 ##Available Colorspaces
 This library works in the following colorspaces:
- * RGB (0-255)
+ * RGB (0-1)
  * HSL (0-1)
  * HSV (0-1)
  * XYZ
@@ -35,7 +35,7 @@ print(vivid.RGBtoHSL(10,20,10,100))
 ### vivid.`colorspace`toRGB(h,s,l,alpha)
 Return `r`,`g`,`b`,`a` components of the `colorspace` input.
 ```lua
-print(vivid.HSVtoRGB(0,255,127))
+print(vivid.HSVtoRGB(0,1,0.5))
 ```
 
 ##Additional Conversion Functions
