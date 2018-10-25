@@ -29,21 +29,21 @@ local utf8 = require(BASE .. 'utf8')
 
 -- default style
 local color = {
-	normal = {bg = {78,78,78}, fg = {200,200,200}, border={20,20,20}},
-	hot    = {bg = {98,98,98}, fg = {69,201,84},   border={30,30,30}},
-	active = {bg = {88,88,88}, fg = {49,181,64},   border={10,10,10}}
+	normal = {bg = {0.305,0.305,0.305}, fg = {0.784,0.784,0.784}, border={0.078,0.078,0.078}},
+	hot    = {bg = {0.384,0.384,0.384}, fg = {0.270,0.788,0.329},   border={0.117,0.117,0.117}},
+	active = {bg = {0.345,0.345,0.345}, fg = {0.192,0.709,0.250},   border={0.039,0.039,0.039}}
 }
 
 -- box drawing
 local gradient = {}
 function gradient:set(from, to)
 	local id = love.image.newImageData(1,2)
-	id:setPixel(0,0, to,to,to,255)
-	id:setPixel(0,1, from,from,from,255)
+	id:setPixel(0,0, to,to,to,1)
+	id:setPixel(0,1, from,from,from,1)
 	gradient.img = love.graphics.newImage(id)
 	gradient.img:setFilter('linear', 'linear')
 end
-gradient:set(200,255)
+gradient:set(0.784,1)
 
 local function box(x,y,w,h, bg, border, flip)
 	love.graphics.setLineWidth(1)
@@ -85,7 +85,7 @@ end
 
 local function Slider(state, fraction, vertical, x,y,w,h)
 	local c = color[state]
-	
+
 	love.graphics.setLineWidth(1)
 	love.graphics.setLineStyle('rough')
 	love.graphics.setColor(c.bg)
@@ -112,7 +112,7 @@ local function Slider2D(state, fraction, x,y,w,h)
 	-- draw quadrants
 	love.graphics.setLineWidth(1)
 	love.graphics.setLineStyle('rough')
-	love.graphics.setColor(c.fg[1], c.fg[2], c.fg[3], math.min(127,c.fg[4] or 255))
+	love.graphics.setColor(c.fg[1], c.fg[2], c.fg[3], math.min(127,c.fg[4] or 1))
 	love.graphics.line(x+w/2,y, x+w/2,y+h)
 	love.graphics.line(x,y+h/2, x+w,y+h/2)
 

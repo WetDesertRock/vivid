@@ -12,9 +12,9 @@ local CS = {
 }
 local sliderInfos =  {
   RGB = {
-    {value=65,min=0,max=255},
-    {value=128,min=0,max=255},
-    {value=44,min=0,max=255},
+    {value=65,min=0,max=1},
+    {value=128,min=0,max=1},
+    {value=44,min=0,max=1},
   },
   HSL = {
     {value=0,min=0,max=1},
@@ -47,13 +47,14 @@ local sliderInfos =  {
     {value=0,min=-134.116,max=107.401},
   },
 }
+
 function love.load()
   -- preload fonts
   fonts = {
     [12] = love.graphics.newFont(12),
     [20] = love.graphics.newFont(20),
   }
-  love.graphics.setBackgroundColor(17,17,17)
+  love.graphics.setBackgroundColor(0.066,0.066,0.066)
   love.graphics.setFont(fonts[12])
 
   -- group defaults
@@ -191,10 +192,10 @@ function love.draw()
 end
 
 function love.keypressed(key, code)
-    gui.keyboard.pressed(key)
+  gui.keyboard.pressed(key)
 end
 
 -- LÖVE 0.9
 function love.textinput(str)
-    gui.keyboard.textinput(str)
+  gui.keyboard.textinput(str)
 end

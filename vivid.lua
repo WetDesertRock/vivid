@@ -44,7 +44,7 @@ end
 --RGB to `colorspace`
 function vivid.RGBtoHSL(...)
   local r,g,b,a = getColorArgs(...)
-  r,g,b = r/255,g/255,b/255
+
   local min = math_min(r,g,b)
   local max = math_max(r,g,b)
   local delta_max = max-min
@@ -83,7 +83,7 @@ end
 
 function vivid.RGBtoHSV(...)
   local r,g,b,a = getColorArgs(...)
-  r,g,b = r/255,g/255,b/255
+
   local min = math_min(r,g,b)
   local max = math_max(r,g,b)
   local delta_max = max-min
@@ -119,7 +119,7 @@ end
 function vivid.RGBtoXYZ(...)
   --(Observer = 2°, Illuminant = D65)
   local r,g,b,a = getColorArgs(...)
-  r,g,b = r/255,g/255,b/255
+
 
   if r > 0.04045 then
     r = ((r+0.055)/1.055)^2.4
@@ -167,9 +167,9 @@ function vivid.HSLtoRGB(...)
   local r,g,b
 
   if s == 0 then
-    r = l*255
-    g = l*255
-    b = l*255
+    r = l
+    g = l
+    b = l
   else
     local var1,var2
 
@@ -189,9 +189,10 @@ function vivid.HSLtoRGB(...)
       if 3*vh < 2 then return v1 + (v2-v1) * ((2/3)-vh) * 6 end
       return v1
     end
-    r = 255*huetorgb(var1, var2, h + (1/3))
-    g = 255*huetorgb(var1, var2, h)
-    b = 255*huetorgb(var1, var2, h - (1/3))
+
+    r = huetorgb(var1, var2, h + (1/3))
+    g = huetorgb(var1, var2, h)
+    b = huetorgb(var1, var2, h - (1/3))
   end
 
   return r,g,b,a
@@ -199,7 +200,7 @@ end
 
 function vivid.HSVtoRGB(...)
   local h,s,v,a = getColorArgs(...)
-  h,s,v = h,s,v
+
   local r,g,b
 
   if s == 0 then
@@ -242,7 +243,7 @@ function vivid.HSVtoRGB(...)
     end
   end
 
-  return r*255,g*255,b*255,a
+  return r,g,b,a
 end
 
 function vivid.XYZtoRGB(...)
@@ -271,7 +272,7 @@ function vivid.XYZtoRGB(...)
     b = b*12.92
   end
 
-  return r*255,g*255,b*255,a
+  return r,g,b,a
 end
 
 function vivid.LabtoRGB(...)
@@ -428,7 +429,7 @@ function vivid.hue(hue, ...)
 end
 function vivid.invert(...)
   local r,g,b,a = getColorArgs(...)
-  return 255-r,255-g,255-b,a
+  return 1-r, 1-g, 1-b, a
 end
 function vivid.invertHue(...)
   local h,s,l,a = vivid.RGBtoHSL(getColorArgs(...))
