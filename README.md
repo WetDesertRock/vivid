@@ -1,4 +1,4 @@
-#vivid.lua
+# vivid.lua
 
 One file simple color manipulation library. Used for color conversion and math.
 
@@ -8,7 +8,7 @@ Included in this repository is a simple example using Quickie that demonstrates 
 
 All conversion formulas are taken from [EasyRGB] with the exception of [HuSL] (which is not included yet).
 
-##Available Colorspaces
+## Available Colorspaces
 This library works in the following colorspaces:
  * RGB (0-1)
  * HSL (0-1)
@@ -38,7 +38,7 @@ Return `r`,`g`,`b`,`a` components of the `colorspace` input.
 print(vivid.HSVtoRGB(0,1,0.5))
 ```
 
-##Additional Conversion Functions
+## Additional Conversion Functions
 ### vivid.XYZtoLab(x,y,z,alpha)
 ### vivid.LabtoXYZ(l,a,b,alpha)
 ### vivid.XYZtoLuv(x,y,z,alpha)
@@ -46,7 +46,7 @@ print(vivid.HSVtoRGB(0,1,0.5))
 ### vivid.LabtoLCH(l,a,b,alpha)
 ### vivid.LCHtoLab(l,c,h,alpha)
 
-##Color Manipulations
+## Color Manipulations
 Most of these manipulations take `color` which looks like `{r,g,b,a}` or just four more arguments `r,g,b,a`, performs the operation, and returns the modified color. Color spaces used are chosen due to my somewhat limited understanding on how each performs.
 ### vivid.lighten(amount, color)
 Uses the HSL colorspace.
