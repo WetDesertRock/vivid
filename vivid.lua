@@ -96,21 +96,12 @@ function vivid.RGBtoHSV(...)
     h,s = 0,0
   else
     s = delta_max / max
-
-    local delta_r = (((max-r)/6) + (delta_max/2)) / delta_max
-    local delta_g = (((max-g)/6) + (delta_max/2)) / delta_max
-    local delta_b = (((max-b)/6) + (delta_max/2)) / delta_max
-
-    if r == max then
-      h = delta_b - delta_g
-    elseif g == max then
-      h = (1/3) + delta_r - delta_b
-    elseif b == max then
-      h = (2/3) + delta_b - delta_r
-    end
-
-    if h < 0 then h = h + 1 end
-    if h > 1 then h = h - 1 end
+    
+    if     r == max then h = (g - b) / delta_max
+    elseif g == max then h = (b - r) / delta_max + 2
+    else                 h = (r - g) / delta_max + 4 end
+    
+    h = ((h + 6) % 6) / 6
   end
 
   return h,s,v,a
