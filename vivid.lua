@@ -71,7 +71,7 @@ function vivid.RGBtoHSL(...)
     elseif g == max then
       h = (1/3) + delta_r - delta_b
     elseif b == max then
-      h = (2/3) + delta_b - delta_r
+      h = (2/3) + delta_g - delta_r
     end
 
     if h < 0 then h = h + 1 end
@@ -106,7 +106,7 @@ function vivid.RGBtoHSV(...)
     elseif g == max then
       h = (1/3) + delta_r - delta_b
     elseif b == max then
-      h = (2/3) + delta_b - delta_r
+      h = (2/3) + delta_g - delta_r
     end
 
     if h < 0 then h = h + 1 end
